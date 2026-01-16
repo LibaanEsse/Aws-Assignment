@@ -63,7 +63,7 @@ Using two route tables ensures:
 
 This setup maintains strong security while supporting necessary cloud operations.
 
-### EC2 Instances
+### 4. EC2 Instances
 - Launched a public EC2 instance in the public subnet with a public IPv4 address
 - Launched a private EC2 instance in the private subnet without a public IPv4 address
 - EC2 user data scripts were used to automate instance bootstrapping
@@ -143,6 +143,31 @@ The architecture uses a single VPC with two public subnets across separate Avail
 - Instances were placed across different availability zones
 - User data scripts were used to install and configure a simple web server
 - Each instance returns unique content to verify load balancing behaviour
+
+- User data scripts for Ec2 instance 1
+  ```
+  #!/bin/bash 
+
+yum update -y 
+yum install -y httpd 
+
+systemctl start httpd 
+systemctl enable httpd 
+
+echo “<h1>Hello Libaan from 1st EC2!<h1/>” > /var/www/html/index.html
+```
+User data scripts for Ec2 instance 2
+```
+#!/bin/bash 
+
+yum update -y 
+yum install -y httpd 
+
+systemctl start httpd 
+systemctl enable httpd 
+
+echo “<h1>Hello Libaan from 2nd EC2!<h1/>” > /var/www/html/index.html
+```
 
 
 
