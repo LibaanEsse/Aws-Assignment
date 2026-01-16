@@ -144,24 +144,30 @@ The architecture uses a single VPC with two public subnets across separate Avail
 - User data scripts were used to install and configure a simple web server
 - Each instance returns unique content to verify load balancing behaviour
 
-- User data scripts for Ec2 instance 1
-  ```
- #!/bin/bash 
+- User Date script for Instance1
+```
+     #!/bin/bash
 
-yum update -y 
-yum install -y httpd 
+yum update -y
+yum install -y httpd
 
-systemctl start httpd 
+systemctl start httpd
 systemctl enable httpd 
 
 echo “<h1>Hello Libaan from 1st EC2!<h1/>” > /var/www/html/index.html
 ```
-User data scripts for Ec2 instance 2
+- User data script for instance 2
+```
+#!/bin/bash
 
+yum update -y
+yum install -y httpd
 
+systemctl start httpd
+systemctl enable httpd 
 
-
-
+echo “<h1>Hello Libaan from 2nd EC2!<h1/>” > /var/www/html/index.html
+```
 
 
 
