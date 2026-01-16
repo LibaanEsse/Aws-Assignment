@@ -29,6 +29,27 @@ The architecture is built around a single VPC with both public and private subne
 A public EC2 instance serves as a bastion host, enabling secure SSH access to the private EC2 instance.
 <img src="Images/vpc-architecture.png"></img> 
 
+### 1. VPC Creation
+- Created a custom VPC with CIDR block `10.0.0.0/16`
+- Created one public subnet
+- Created one private subnet
+
+### Why this is important?
+A VPC (Virtual Private Cloud) gives you complete control over your cloud network, including IP addressing, routing, and security. It acts as your own private network in which you can deploy and manage instances, similar to how networks are structured in real-world architectures.
+
+- Using a /16 CIDR block provides more than 65,000 private IP addresses, allowing your network to scale in the future without redesign. This ensures high scalability for growth or additional resources.
+
+- A Public Subnet hosts resources that need to be accessible from the internet. Examples include EC2 instances running web services or acting as bastion hosts for SSH access. Resources in the public subnet connect to the internet via an Internet Gateway, enabling secure inbound and outbound communication.
+
+- A Private Subnet contains resources that should remain hidden from the public internet, such as internal applications or sensitive backend services. Instances here can access the internet only through a NAT Gateway for tasks like software updates, while preventing any direct inbound connections from outside AWS. This provides a secure environment for private workloads.
+
+
+- ### 2. Internet Access
+- Created and attached an Internet Gateway to the VPC
+- Allocated an Elastic IP
+- Created a NAT Gateway in the public subnet using the Elastic IP
+
+
 
 
 
