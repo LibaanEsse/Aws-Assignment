@@ -33,6 +33,7 @@ A public EC2 instance serves as a bastion host, enabling secure SSH access to th
 - Created a custom VPC with CIDR block `10.0.0.0/16`
 - Created one public subnet
 - Created one private subnet
+- (Images/)
 
 A VPC (Virtual Private Cloud) gives you complete control over your cloud network, including IP addressing, routing, and security. It acts as your own private network in which you can deploy and manage instances, similar to how networks are structured in real-world architectures.
 
