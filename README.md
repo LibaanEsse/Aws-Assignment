@@ -95,8 +95,35 @@ echo "<h1>Hello from private EC2v1 from $(hostname -f)</h1>" > /var/www/html/ind
 ```
 Deploying instances in public and private subnets shows how secure multi-tier cloud architectures work. Public systems are accessible but controlled, while private systems stay protected from external threats.
 
- ## Images
-You can view all project images here: [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images)
+ ### 5. Security
+- Public EC2 security group allows SSH and HTTP access only from my IP
+- Private EC2 security group allows inbound access only from within the VPC (via the bastion host)
+- No direct internet access to the private EC2
+
+  ### 6. Bastion Host
+The public EC2 instance serves a dual purpose: it functions not only as a standard compute instance but also as a bastion host, providing a secure and controlled gateway for accessing the private EC2 instance. By acting as an intermediary, the bastion host allows administrators and authorized users to establish SSH connections to the private instance without requiring a direct public IP or exposing the private instance to the internet. This setup enhances security by restricting direct external access, ensuring that all management and maintenance activities pass through a single, monitored point of entry. In addition, it enables logging and auditing of SSH connections, providing greater visibility and control over who accesses the private instance and when.
+
+### 7. CloudWatch Monitoring
+Detailed CloudWatch monitoring was activated on both EC2 instances to track and validate resource usage and network activity.
+
+This included:
+
+CPU utilization metrics to monitor processing load and performance
+
+Network in/out metrics to measure the volume of data transmitted and received
+
+Packet count metrics to assess the number of network packets flowing to and from the instances
+
+CloudWatch metrics were analyzed to confirm:
+
+Inbound traffic reaching the public EC2 instance, ensuring the bastion host was accessible
+
+Outbound traffic from the private EC2 instance through the NAT Gateway, verifying internet connectivity for the private subnet
+
+Normal instance behavior after deployment, indicating that both instances were operating within expected performance and network parameters
+
+  ## Assignment Images 
+ You can view all project images which includes a detailed step by tutorial here: [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images)
 
 
 
