@@ -134,9 +134,17 @@ Normal instance behavior after deployment, indicating that both instances were o
 - Why backend instances should not be directly exposed to the internet
 - How Auto Scaling Groups manage instance lifecycle independently of traffic flow
 
-- ## Architechture
+ ## Architechture
 The architecture uses a single VPC with two public subnets across separate Availability Zones. An internet-facing Application Load Balancer distributes traffic to EC2 instances in a target group.Cloudflare handles DNS by mapping a custom domain to the ALB, while HTTPS is terminated at the load balancer using an ACM SSL/TLS certificate. EC2 instances are managed by an Auto Scaling Group to ensure availability and automatic recovery.
 <img src="Images2/alb-architecture.png"></img> 
+
+### 1. EC2 Instances
+- Deployed EC2 instances within the same VPC
+- Instances were placed across different availability zones
+- User data scripts were used to install and configure a simple web server
+- Each instance returns unique content to verify load balancing behaviour
+
+
 
 
 
