@@ -125,6 +125,20 @@ Normal instance behavior after deployment, indicating that both instances were o
   ## Assignment Images 
  You can view all project images which includes a detailed step by step tutorial here: [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images)
 
+### Assignment 2- AWS Application Load Balancer with Multi-AZ EC2 Web Servers
+## 📚 What was Learned 
+- How Application Load Balancers distribute traffic across availability zones
+- How DNS integrates with cloud load balancing
+- How HTTPS termination works using ACM
+- How target groups and health checks determine instance availability
+- Why backend instances should not be directly exposed to the internet
+- How Auto Scaling Groups manage instance lifecycle independently of traffic flow
+
+- ## Architechture
+The architecture uses a single VPC with two public subnets across separate Availability Zones. An internet-facing Application Load Balancer distributes traffic to EC2 instances in a target group.Cloudflare handles DNS by mapping a custom domain to the ALB, while HTTPS is terminated at the load balancer using an ACM SSL/TLS certificate. EC2 instances are managed by an Auto Scaling Group to ensure availability and automatic recovery.
+<img src="Images2/alb-architecture.png"></img> 
+
+
 
 
 
