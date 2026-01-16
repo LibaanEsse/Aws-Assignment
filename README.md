@@ -49,7 +49,12 @@ A VPC (Virtual Private Cloud) gives you complete control over your cloud network
 - Created a NAT Gateway in the public subnet using the Elastic IP
 
 ### Why this is important?
-The Internet Gateway allows public instances to communicate with the internet, while the NAT Gateway lets private instances make outbound requests without exposing them to inbound traffic. This design keeps public resources accessible for management and testing, while private instances remain secure and isolated.
+The Internet Gateway allows public instances to communicate with the internet, while the NAT Gateway lets private instances make outbound requests without exposing them to inbound traffic. This design keeps public resources accessible for management and testing, while private instances remain secure and isolated. An Elastic IP provides a static public IP for resources like NAT Gateways or public EC2 instances. It ensures consistent connectivity, allowing private instances to access the internet reliably and public instances to be reachable for management or users. 
+
+### 3. Route Tables
+- Public route table configured with a default route (`0.0.0.0/0`) to the Internet Gateway
+- Private route table configured with a default route (`0.0.0.0/0`) to the NAT Gateway
+- Each route table associated with its respective subnet
 
 
 
