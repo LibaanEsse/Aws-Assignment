@@ -33,7 +33,6 @@ A public EC2 instance serves as a bastion host, enabling secure SSH access to th
 - Created a custom VPC with CIDR block `10.0.0.0/16`
 - Created one public subnet
 - Created one private subnet
-- (Images/)
 
 A VPC (Virtual Private Cloud) gives you complete control over your cloud network, including IP addressing, routing, and security. It acts as your own private network in which you can deploy and manage instances, similar to how networks are structured in real-world architectures.
 
@@ -68,8 +67,9 @@ This setup maintains strong security while supporting necessary cloud operations
 - Launched a public EC2 instance in the public subnet with a public IPv4 address
 - Launched a private EC2 instance in the private subnet without a public IPv4 address
 - EC2 user data scripts were used to automate instance bootstrapping
+ 
 
-- - Public User Date
+-Public User Date
 ```
      #!/bin/bash
 
@@ -81,7 +81,20 @@ systemctl enable httpd
 
 echo "<h1>Hello Libaan this is the public EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
+-Private user data 
+```
+#!/bin/bash
 
+yum update -y
+yum install -y httpd
+
+systemctl start httpd
+systemctl enable httpd 
+```
+echo "<h1>Hello Libaan this is the private EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
+
+ ## Images
+You can view all project images here: [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images)
 
 
 
