@@ -63,13 +63,13 @@ Using two route tables ensures:
 
 This setup maintains strong security while supporting necessary cloud operations.
 
-. EC2 Instances
+### EC2 Instances
 - Launched a public EC2 instance in the public subnet with a public IPv4 address
 - Launched a private EC2 instance in the private subnet without a public IPv4 address
 - EC2 user data scripts were used to automate instance bootstrapping
  
 
--Public User Date
+- Public User Date
 ```
      #!/bin/bash
 
@@ -81,7 +81,7 @@ systemctl enable httpd
 
 echo "<h1>Hello Libaan this is the public EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
--Private user data 
+- Private user data 
 ```
 #!/bin/bash
 
@@ -93,6 +93,8 @@ systemctl enable httpd
 
 echo "<h1>Hello Libaan this is the private EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
+Deploying instances in public and private subnets shows how secure multi-tier cloud architectures work. Public systems are accessible but controlled, while private systems stay protected from external threats.
+
  ## Images
 You can view all project images here: [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images)
 
