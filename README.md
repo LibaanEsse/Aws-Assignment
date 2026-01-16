@@ -90,9 +90,9 @@ yum install -y httpd
 
 systemctl start httpd
 systemctl enable httpd 
-```
-echo "<h1>Hello Libaan this is the private EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
 
+echo "<h1>Hello Libaan this is the private EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
+```
  ## Images
 You can view all project images here: [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images)
 
