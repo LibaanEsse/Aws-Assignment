@@ -123,7 +123,7 @@ Outbound traffic from the private EC2 instance through the NAT Gateway, verifyin
 Normal instance behavior after deployment, indicating that both instances were operating within expected performance and network parameters
 
   ## Assignment Images 
- You can view all project images which includes a detailed step by tutorial here: [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images)
+ You can view all project images which includes a detailed step by step tutorial here: [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images)
 
 
 
