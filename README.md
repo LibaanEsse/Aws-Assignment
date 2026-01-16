@@ -42,7 +42,7 @@ A VPC (Virtual Private Cloud) gives you complete control over your cloud network
 
 - A Private Subnet contains resources that should remain hidden from the public internet, such as internal applications or sensitive backend services. Instances here can access the internet only through a NAT Gateway for tasks like software updates, while preventing any direct inbound connections from outside AWS. This provides a secure environment for private workloads.
 
-- ### 2. Internet Access
+ ### 2. Internet Access
 - Created and attached an Internet Gateway to the VPC
 - Allocated an Elastic IP
 - Created a NAT Gateway in the public subnet using the Elastic IP
