@@ -100,7 +100,7 @@ Deploying instances in public and private subnets shows how secure multi-tier cl
 - Private EC2 security group allows inbound access only from within the VPC (via the bastion host)
 - No direct internet access to the private EC2
 
-  ### 6. Bastion Host
+### 6. Bastion Host
 The public EC2 instance serves a dual purpose: it functions not only as a standard compute instance but also as a bastion host, providing a secure and controlled gateway for accessing the private EC2 instance. By acting as an intermediary, the bastion host allows administrators and authorized users to establish SSH connections to the private instance without requiring a direct public IP or exposing the private instance to the internet. This setup enhances security by restricting direct external access, ensuring that all management and maintenance activities pass through a single, monitored point of entry. In addition, it enables logging and auditing of SSH connections, providing greater visibility and control over who accesses the private instance and when.
 
 ### 7. CloudWatch Monitoring
