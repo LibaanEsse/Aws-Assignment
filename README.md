@@ -1,4 +1,4 @@
-# Aws Assignment
+# AWS Assignment
 
 ## Overview
 This assignment demonstrates the design and implementation of a fully custom AWS network built from the ground up. The objective is to gain hands-on experience with core cloud networking concepts, including VPC design, subnetting, routing, controlled internet access, and instance monitoring.In addition, the assignment showcases a common DevOps architecture pattern in which multiple EC2 instances are deployed behind an Application Load Balancer (ALB). The goal is to understand how load balancing, health checks, security group isolation, HTTPS termination, DNS integration, and automated scaling work together to create a highly available application architecture.
@@ -34,7 +34,6 @@ A public EC2 instance serves as a bastion host, enabling secure SSH access to th
 - Created one public subnet
 - Created one private subnet
 
-### Why this is important?
 A VPC (Virtual Private Cloud) gives you complete control over your cloud network, including IP addressing, routing, and security. It acts as your own private network in which you can deploy and manage instances, similar to how networks are structured in real-world architectures.
 
 - Using a /16 CIDR block provides more than 65,000 private IP addresses, allowing your network to scale in the future without redesign. This ensures high scalability for growth or additional resources.
@@ -48,13 +47,41 @@ A VPC (Virtual Private Cloud) gives you complete control over your cloud network
 - Allocated an Elastic IP
 - Created a NAT Gateway in the public subnet using the Elastic IP
 
-### Why this is important?
 The Internet Gateway allows public instances to communicate with the internet, while the NAT Gateway lets private instances make outbound requests without exposing them to inbound traffic. This design keeps public resources accessible for management and testing, while private instances remain secure and isolated. An Elastic IP provides a static public IP for resources like NAT Gateways or public EC2 instances. It ensures consistent connectivity, allowing private instances to access the internet reliably and public instances to be reachable for management or users. 
 
 ### 3. Route Tables
 - Public route table configured with a default route (`0.0.0.0/0`) to the Internet Gateway
 - Private route table configured with a default route (`0.0.0.0/0`) to the NAT Gateway
 - Each route table associated with its respective subnet
+
+Route tables control how traffic moves inside and outside a VPC.  
+Using two route tables ensures:
+
+- Public instances can be reached from the internet when needed  
+- Private instances stay isolated from direct external access  
+- Private instances can still make outbound requests safely  
+
+This setup maintains strong security while supporting necessary cloud operations.
+
+. EC2 Instances
+- Launched a public EC2 instance in the public subnet with a public IPv4 address
+- Launched a private EC2 instance in the private subnet without a public IPv4 address
+- EC2 user data scripts were used to automate instance bootstrapping
+
+- - Public User Date
+```
+     #!/bin/bash
+
+yum update -y
+yum install -y httpd
+
+systemctl start httpd
+systemctl enable httpd 
+
+echo "<h1>Hello Libaan this is the public EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
+```
+
+
 
 
 
