@@ -79,7 +79,7 @@ yum install -y httpd
 systemctl start httpd
 systemctl enable httpd 
 
-echo "<h1>Hello Libaan this is the public EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
+echo "<h1>Hello from public EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
 - Private user data 
 ```
@@ -91,7 +91,7 @@ yum install -y httpd
 systemctl start httpd
 systemctl enable httpd 
 
-echo "<h1>Hello Libaan this is the private EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
+echo "<h1>Hello from private EC2v1 from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
 Deploying instances in public and private subnets shows how secure multi-tier cloud architectures work. Public systems are accessible but controlled, while private systems stay protected from external threats.
 
