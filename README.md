@@ -23,7 +23,11 @@ Core knowledge gained:
 
 - How CloudWatch can be used to validate infrastructure behaviour
 
+## Architecture
+The architecture is built around a single VPC with both public and private subnets. An Internet Gateway allows inbound access to resources in the public subnet, while a NAT Gateway provides outbound-only internet access for instances in the private subnet.
 
+A public EC2 instance serves as a bastion host, enabling secure SSH access to the private EC2 instance.
+<img src="Images/vpc-architecture.png"></img> 
 
 
 
