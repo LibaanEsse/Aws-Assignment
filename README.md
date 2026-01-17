@@ -144,6 +144,14 @@ The architecture uses a single VPC with two public subnets across separate Avail
 - User data scripts were used to install and configure a simple web server
 - Each instance returns unique content to verify load balancing behaviour
 
+Using multiple Availability Zones (Multi-AZ) increases fault tolerance and high availability. If one AZ experiences issues, the other instance in a different AZ can still serve traffic.
+
+Launching instances in the same VPC keeps them within a controlled, isolated network environment, which is a standard practice in real-world architectures.
+
+Using User Data to automate web server installation and configuration supports a DevOps approach, where servers are automatically configured at launch instead of being set up manually.
+
+Serving different content from each instance provides a simple but clear way to test and visually confirm that the Application Load Balancer is correctly distributing traffic across multiple back-end instances.
+
 - User Date script for Instance1
 ```
      #!/bin/bash
@@ -167,14 +175,18 @@ systemctl start httpd
 systemctl enable httpd 
 
 echo “<h1>Hello Libaan from 2nd EC2!<h1/>” > /var/www/html/index.html
-
-### 2. Application Load Balancer
-Created an internet-facing Application Load Balancer
-Attached the ALB to two public subnets
-Configured HTTP (port 80) and HTTPS (port 443) listeners
-Associated an ACM-issued SSL/TLS certificate with the HTTPS listener
-Created a target group with health checks configured on the root path
 ```
+### 2. Application Load Balancer
+- Created an internet-facing Application Load Balancer
+- Attached the ALB to two public subnets
+- Configured HTTP (port 80) and HTTPS (port 443) listeners
+- Associated an ACM-issued SSL/TLS certificate with the HTTPS listener
+-Created a target group with health checks configured on the root path
+
+The Application Load Balancer (ALB) distributes incoming traffic across multiple EC2 instances, improving performance and reducing downtime. Deploying the ALB in two public subnets adds resilience if one Availability Zone fails. The Target Group defines the backend instances, enabling scalable and flexible routing. Health checks ensure only healthy instances receive traffic, maintaining availability and preventing users from reaching failed servers.
+
+
+
 
 
 
