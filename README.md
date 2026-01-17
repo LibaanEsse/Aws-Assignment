@@ -167,6 +167,13 @@ systemctl start httpd
 systemctl enable httpd 
 
 echo “<h1>Hello Libaan from 2nd EC2!<h1/>” > /var/www/html/index.html
+
+### 2. Application Load Balancer
+Created an internet-facing Application Load Balancer
+Attached the ALB to two public subnets
+Configured HTTP (port 80) and HTTPS (port 443) listeners
+Associated an ACM-issued SSL/TLS certificate with the HTTPS listener
+Created a target group with health checks configured on the root path
 ```
 
 
