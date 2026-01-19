@@ -185,6 +185,18 @@ echo “<h1>Hello Libaan from 2nd EC2!<h1/>” > /var/www/html/index.html
 
 The Application Load Balancer (ALB) distributes incoming traffic across multiple EC2 instances, improving performance and reducing downtime. Deploying the ALB in two public subnets adds resilience if one Availability Zone fails. The Target Group defines the backend instances, enabling scalable and flexible routing. Health checks ensure only healthy instances receive traffic, maintaining availability and preventing users from reaching failed servers.
 
+### 3. DNS and HTTPS
+- Configured a custom domain using Cloudflare DNS
+- Mapped the domain to the ALB DNS name
+- Enabled secure HTTPS access via ACM certificate termination at the ALB
+- Ensured all external access flows through the ALB
+
+
+This setup ensures that the EC2 instances are protected and cannot be accessed directly from the public internet which greatly reduces the attack surface.
+All incoming traffic must pass through the ALB which provides a controlled and monitored entry point into the architecture.
+By limiting access only to connections coming from the ALB Security Group the principle of least privilege is enforced ensuring only trusted traffic reaches the instances.
+This is a real world security practice that helps prevent unauthorized access network scanning attacks and exposure of backend systems.
+
 
 
 
