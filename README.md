@@ -132,10 +132,10 @@ Normal instance behavior after deployment, indicating that both instances were o
 - How HTTPS termination works using ACM
 - How target groups and health checks determine instance availability
 - Why backend instances should not be directly exposed to the internet
-- How Auto Scaling Groups manage instance lifecycle independently of traffic flow
+-
 
  ## Architechture
-The architecture uses a single VPC with two public subnets across separate Availability Zones. An internet-facing Application Load Balancer distributes traffic to EC2 instances in a target group.Cloudflare handles DNS by mapping a custom domain to the ALB, while HTTPS is terminated at the load balancer using an ACM SSL/TLS certificate. EC2 instances are managed by an Auto Scaling Group to ensure availability and automatic recovery.
+The architecture uses a single VPC with two public subnets across separate Availability Zones. An internet-facing Application Load Balancer distributes traffic to EC2 instances in a target group. This also handles DNS by mapping a custom domain to the ALB, while HTTPS is terminated at the load balancer using an ACM SSL/TLS certificate. 
 <img src="Images2/alb-architecture.png"></img> 
 
 ### 1. EC2 Instances
@@ -185,17 +185,37 @@ echo “<h1>Hello Libaan from 2nd EC2!<h1/>” > /var/www/html/index.html
 
 The Application Load Balancer (ALB) distributes incoming traffic across multiple EC2 instances, improving performance and reducing downtime. Deploying the ALB in two public subnets adds resilience if one Availability Zone fails. The Target Group defines the backend instances, enabling scalable and flexible routing. Health checks ensure only healthy instances receive traffic, maintaining availability and preventing users from reaching failed servers.
 
-### 3. DNS and HTTPS
-- Configured a custom domain using Cloudflare DNS
-- Mapped the domain to the ALB DNS name
-- Enabled secure HTTPS access via ACM certificate termination at the ALB
-- Ensured all external access flows through the ALB
-
+### 3 . Security Groups
+- ALB SG: allow HTTP from anywhere
+- EC2 SG: allow HTTP only from the ALB SG
+- Do not allow direct public access to EC2
 
 This setup ensures that the EC2 instances are protected and cannot be accessed directly from the public internet which greatly reduces the attack surface.
 All incoming traffic must pass through the ALB which provides a controlled and monitored entry point into the architecture.
 By limiting access only to connections coming from the ALB Security Group the principle of least privilege is enforced ensuring only trusted traffic reaches the instances.
 This is a real world security practice that helps prevent unauthorized access network scanning attacks and exposure of backend systems.
+
+### 4. Testing
+- Visit the ALB DNS name
+- Refresh to verify traffic alternates between both instances
+- Confirm health checks are healthy
+
+The Application Load Balancer was tested using its DNS name. The application was accessible through the ALB, and repeated refreshes confirmed that traffic was distributed between multiple EC2 instances. The target group health checks were configured with HTTP on path /, and all registered targets reported a healthy status.
+
+### Assignment 2 Images 
+You can view all project images which includes a detailed step by step tutorial here. [View all images](https://github.com/LibaanEsse/Aws-Assignment/upload/main/Images2) 
+
+### Improvments
+- Add Auto Scaling to automatically adjust capacity based on traffic or CPU utilization.
+- Improve security hardening by limiting outbound security group rules and using IAM roles with least privilege.
+- Enable ALB access logs to S3 for traffic analysis and auditing.
+- Creating a launch template with user data and security configuration
+- Configuring a custom domain using Cloudflare DNS
+
+### Final Conclusion 
+This project demonstrated the design and deployment of a secure and highly available AWS infrastructure using a fully custom VPC. Public and private subnets were implemented with proper route table management, Internet Gateway, and NAT Gateway configuration to ensure correct traffic flow and controlled internet access. An Application Load Balancer was used to securely distribute traffic to EC2 instances while preventing direct public access, and health checks ensured reliability. Network segmentation and the use of a bastion host reinforced security best practices by enabling secure administrative access to private resources. Overall, the project highlights core AWS networking, security, and availability principles.
+
+
 
 
 
