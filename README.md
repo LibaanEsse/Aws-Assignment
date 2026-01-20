@@ -203,7 +203,7 @@ This is a real world security practice that helps prevent unauthorized access ne
 The Application Load Balancer was tested using its DNS name. The application was accessible through the ALB, and repeated refreshes confirmed that traffic was distributed between multiple EC2 instances. The target group health checks were configured with HTTP on path /, and all registered targets reported a healthy status.
 
 ### Assignment 2 Images 
-You can view all project images which includes a detailed step by step tutorial here. [View all images](https://github.com/LibaanEsse/Aws-Assignment/upload/main/Images2) 
+You can view all project images which includes a detailed step by step tutorial here. [View all images](https://github.com/LibaanEsse/Aws-Assignment/tree/main/Images2) 
 
 ### Improvments
 - Add Auto Scaling to automatically adjust capacity based on traffic or CPU utilization.
